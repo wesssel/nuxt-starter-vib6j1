@@ -1,6 +1,22 @@
 import { defineNuxtConfig } from 'nuxt'
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-
+  modules: [
+    '@nuxtjs/dotenv',
+    '@nuxtjs/tailwindcss',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: process.env.SB_ACCESS_TOKEN,
+      },
+    ],
+    [
+      '@storyblok/nuxt-auth',
+      {
+        id: process.env.SB_APP_ID,
+        secret: process.env.SB_APP_SECRET,
+        redirect_uri: process.env.SB_APP_REDIRECT_URI,
+      },
+    ],
+  ],
 })
